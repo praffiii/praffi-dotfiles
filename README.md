@@ -82,46 +82,7 @@ Use a Nerd Font in Ghostty. This config currently expects:
 JetBrainsMono Nerd Font
 ```
 
-## Structure
-
-```text
-ghostty/
-  config
-  shaders/
-    cursor.glsl
-
-nvim/
-  init.lua
-  lazy-lock.json
-  lazyvim.json
-  lua/
-    config/
-    plugins/
-  stylua.toml
-```
-
-## Install Paths
-
-Ghostty config:
-
-```text
-~/Library/Application Support/com.mitchellh.ghostty/config
-```
-
-Ghostty shaders:
-
-```text
-~/.config/ghostty/shaders/
-```
-
-Neovim config:
-
-```text
-~/.config/nvim/
-```
-
 ## Notes
 
-- Do not commit Neovim generated folders like `~/.local/share/nvim`, `~/.local/state/nvim`, or `~/.cache/nvim`.
-- Keep app caches and local state outside this repo.
 - This repo uses copy-based install steps, not Stow or symlinks.
+- Neovim plugin/cache/state folders are generated locally and are not part of this repo.
