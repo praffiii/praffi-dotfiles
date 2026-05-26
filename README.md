@@ -120,26 +120,6 @@ Neovim config:
 ~/.config/nvim/
 ```
 
-## Updating This Repo From Your Current Mac
-
-After changing your active Ghostty or Neovim config, copy the latest files back into this repo:
-
-```sh
-cp ~/Library/Application\ Support/com.mitchellh.ghostty/config ~/praffi-dotfiles/ghostty/config
-cp -R ~/.config/ghostty/shaders ~/praffi-dotfiles/ghostty/shaders
-cp -R ~/.config/nvim/init.lua ~/.config/nvim/lazy-lock.json ~/.config/nvim/lazyvim.json ~/.config/nvim/lua ~/.config/nvim/stylua.toml ~/praffi-dotfiles/nvim/
-```
-
-Then commit and push:
-
-```sh
-cd ~/praffi-dotfiles
-git status
-git add .
-git commit -m "Update dotfiles"
-git push
-```
-
 ## Notes
 
 - Do not commit Neovim generated folders like `~/.local/share/nvim`, `~/.local/state/nvim`, or `~/.cache/nvim`.
