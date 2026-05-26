@@ -1,0 +1,13 @@
+.DS_Store
+*.swp
+*.swo
+
+# Local/editor noise
+.idea/
+.vscode/
+
+# Neovim generated state should not live in this repo
+.local/
+share/
+state/
+cache/

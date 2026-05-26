@@ -1,0 +1,42 @@
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 20
+
+# Theme
+theme = GithubDark
+
+# Transparency & Blur
+background-opacity = 0.7
+background-blur-radius = 20
+
+# Split navigation
+keybind = opt+h=goto_split:left
+keybind = opt+j=goto_split:bottom
+keybind = opt+k=goto_split:top
+keybind = opt+l=goto_split:right
+
+# Create splits
+keybind = opt+shift+h=new_split:left
+keybind = opt+shift+j=new_split:down
+keybind = opt+shift+k=new_split:up
+keybind = opt+shift+l=new_split:right
+
+# Escape / modified keys
+keybind = ctrl+left_bracket=text:\x1b
+keybind = shift+enter=text:\x1b[13;2u
+macos-option-as-alt = true
+keybind = alt+up=esc:[1;3A
+keybind = alt+down=esc:[1;3B
+keybind = alt+left=esc:[1;3D
+keybind = alt+right=esc:[1;3C
+
+# UI
+mouse-hide-while-typing = true
+macos-titlebar-proxy-icon = hidden
+title = " "
+
+# Cursor trail
+custom-shader = ~/.config/ghostty/shaders/cursor.glsl
+
+# Clipboard
+clipboard-write = allow
