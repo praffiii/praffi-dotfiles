@@ -2,6 +2,16 @@
 *.swp
 *.swo
 
+# Secrets and machine-local config
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.mobileprovision
+id_rsa
+id_ed25519
+
 # Local/editor noise
 .idea/
 .vscode/
