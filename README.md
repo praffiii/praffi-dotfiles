@@ -106,3 +106,7 @@ JetBrainsMono Nerd Font
 
 - This repo uses copy-based install steps, not Stow or symlinks.
 - Neovim plugin/cache/state folders are generated locally and are not part of this repo.
+
+## Credits
+
+Parts of this setup were inspired by and adapted from [vossenwout/pookie-dotfiles](https://github.com/vossenwout/pookie-dotfiles).
