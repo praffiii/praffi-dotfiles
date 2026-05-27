@@ -62,12 +62,32 @@ Inside Neovim, you can also run:
 :Lazy sync
 ```
 
+### Install Tmux Config
+
+Back up your existing tmux config first:
+
+```sh
+cp ~/.tmux.conf ~/.tmux.conf.bak.$(date +%Y%m%d-%H%M%S) 2>/dev/null || true
+```
+
+Install this repo's tmux config:
+
+```sh
+cp tmux/.tmux.conf ~/.tmux.conf
+```
+
+Start tmux:
+
+```sh
+tmux
+```
+
 ## Requirements
 
 Install the basics with Homebrew:
 
 ```sh
-brew install neovim git ripgrep fd fzf lazygit tree-sitter
+brew install neovim tmux git ripgrep fd fzf lazygit tree-sitter
 ```
 
 Recommended:
