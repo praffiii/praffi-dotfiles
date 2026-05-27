@@ -37,27 +37,25 @@ return {
       },
     },
     config = function(_, opts)
-      require("kanagawa").setup(opts)
-      vim.cmd.colorscheme("kanagawa-wave")
+      local state_file = vim.fn.stdpath("state") .. "/praffi-background"
+      local transparent_groups = {
+        "Normal",
+        "NormalNC",
+        "NormalFloat",
+        "FloatBorder",
+        "FloatTitle",
+        "SignColumn",
+        "EndOfBuffer",
+        "LineNr",
+        "CursorLineNr",
+        "StatusLine",
+        "StatusLineNC",
+        "TabLine",
+        "TabLineFill",
+        "WinSeparator",
+      }
 
       local function apply_transparent_background()
-        local transparent_groups = {
-          "Normal",
-          "NormalNC",
-          "NormalFloat",
-          "FloatBorder",
-          "FloatTitle",
-          "SignColumn",
-          "EndOfBuffer",
-          "LineNr",
-          "CursorLineNr",
-          "StatusLine",
-          "StatusLineNC",
-          "TabLine",
-          "TabLineFill",
-          "WinSeparator",
-        }
-
         for _, group in ipairs(transparent_groups) do
           local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
           hl.bg = nil
@@ -66,11 +64,57 @@ return {
         end
       end
 
-      apply_transparent_background()
+      local function read_transparent_background()
+        local ok, value = pcall(vim.fn.readfile, state_file)
+        if not ok or not value[1] then
+          return true
+        end
+
+        return value[1] ~= "opaque"
+      end
+
+      local function write_transparent_background(enabled)
+        vim.fn.mkdir(vim.fn.fnamemodify(state_file, ":h"), "p")
+        vim.fn.writefile({ enabled and "transparent" or "opaque" }, state_file)
+      end
+
+      local function set_transparent_background(enabled, notify, persist)
+        vim.g.praffi_transparent_background = enabled
+
+        if enabled then
+          require("kanagawa").setup(opts)
+        else
+          require("kanagawa").setup({ transparent = false })
+        end
+
+        vim.cmd.colorscheme("kanagawa-wave")
+
+        if enabled then
+          apply_transparent_background()
+        end
+
+        if notify then
+          vim.notify("Neovim background: " .. (enabled and "transparent" or "opaque"))
+        end
+
+        if persist then
+          write_transparent_background(enabled)
+        end
+      end
+
+      set_transparent_background(read_transparent_background(), false, false)
       vim.api.nvim_create_autocmd("ColorScheme", {
         group = vim.api.nvim_create_augroup("praffi_transparent_background", { clear = true }),
-        callback = apply_transparent_background,
+        callback = function()
+          if vim.g.praffi_transparent_background ~= false then
+            apply_transparent_background()
+          end
+        end,
       })
+
+      vim.keymap.set("n", "<leader>ut", function()
+        set_transparent_background(vim.g.praffi_transparent_background == false, true, true)
+      end, { desc = "Toggle Transparent Background" })
     end,
   },
 
